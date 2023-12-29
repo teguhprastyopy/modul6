@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Choose Image for Prediction</title>
+</head>
+<body>
+    <h1>Choose an Image for Prediction</h1>
+    <div>
+        {% for image in images %}
+            <img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ image }}" width="100" height="100">
+            <a href="/predict?image={{ image }}">Predict This Image</a>
+        {% endfor %}
+    </div>
+</body>
+</html>

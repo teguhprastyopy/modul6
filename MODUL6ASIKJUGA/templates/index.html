@@ -1,75 +1,49 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <title>Image Classification</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Image Prediction</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </head>
 <body>
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" href="#">MODUL 6</a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="/about">About</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-<div class='container'>
-  <div class="card">
-    <div class="card-header">
-      Image Classfication
-    </div>
-    <div class="card-body">
-      <form class="form-horizontal" action="/submit" method="post" enctype="multipart/form-data">
-        <div class="form-group">
-          <label class="control-label col-sm-2" for="pwd">Upload Your Image :</label>
-          <div class="col-sm-10">          
-            <input type="file" class="form-control" placeholder="Hours Studied"  name="my_image" id="pwd">
-          </div>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">MODUL 6</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="/about">ABOUT</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <br>
-        <button type="submit" class="btn btn-success">Submit</button>
-      </form>
+    </nav>
+    <div class="container">
+        <div class="card mx-auto" style="max-width: 400px; margin-top:20px">
+            <div class="card-body">
+                <h5 class="card-title">Upload Image for Prediction</h5>
+                <form action="/submit" method="post" enctype="multipart/form-data">
+                    <input class="form-control" type="file" id="formFile" name="my_image">
+                    <input type="submit" class="btn btn-primary" value="Predict" style="margin-top:10px">
+                </form>
+                {% if prediction %}
+                <div class="card" style="margin-top:10px">
+                    <h5 class="card-title">Prediction: {{ prediction }}</h5>
+                    <img src="{{ img_path }}" alt="Uploaded Image" style="width:80%" class="mx-auto">
+                    <div class="card-body">
+                        <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Time Taken: {{ prediction_time }} seconds</li>
+                        <li class="list-group-item">Accuracy: {{ accuracy }}%</li>
+                        <li class="list-group-item">Loss: {{ loss }}</li>
+                    </ul>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
     </div>
-  </div>
-
-  <br>
-
-  {% if prediction %}
-  <div class='card'>
-    <div class='card-body'>
-      <div class='text-center'>
-        <img src="{{img_path}}" height="400px" width="400px">
-        <p class='card-text'>
-          <h2>Your Prediction   : <i> {{prediction}} </i></h2>
-        </p>
-      </div>      
-    </div>
-  </div>
-  {% endif %}
-</div>
-  
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-</div>
 </body>
 </html>
-
-
-
-
-
-
-
-

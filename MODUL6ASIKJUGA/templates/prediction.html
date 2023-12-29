@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediction Result</title>
+</head>
+<body>
+    <h1>Prediction Result</h1>
+    <p>Predicted Label: {{ prediction }}</p>
+    <p>Prediction Time: {{ prediction_time }} seconds</p>
+    <img src="{{ url_for('static', filename=img_path.replace('static/', '')) }}" alt="Predicted Image">
+</body>
+</html>
